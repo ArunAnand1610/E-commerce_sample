@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:e_commerce_project/Provider/cartprovider.dart';
 import 'package:e_commerce_project/Provider/productprovider.dart';
 import 'package:e_commerce_project/productdetails.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ void main() {
   runApp( MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: const MyApp(),
     ),

@@ -1,3 +1,4 @@
+import 'package:e_commerce_project/colorconst.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +7,7 @@ class CardContainer extends StatefulWidget {
   final imagename;
   final imagepath;
   final name;
-
+ final rating;
   final special;
   final offer;
   final discountprice;
@@ -19,7 +20,7 @@ class CardContainer extends StatefulWidget {
       this.imagepath,
       this.offer,
       this.discountprice,
-      this.id})
+      this.id, this.rating})
       : super(key: key);
 
   @override
@@ -121,15 +122,64 @@ class _CardContainerState extends State<CardContainer> {
                     fontWeight: FontWeight.w500)),
           ),
           Container(
-            width: 160,
+            width: MediaQuery.of(context).size.width / 2,
             margin: const EdgeInsets.only(top: 8, left: 8),
             child: Text('${widget.offer}',
-                overflow: TextOverflow.ellipsis,
+                //  overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.rubik(
                     fontSize: 12,
                     color: Colors.black,
                     fontWeight: FontWeight.normal)),
           ),
+          Container(
+              margin: const EdgeInsets.only(top: 8, left: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                InkWell(
+                  onTap: (){
+                    
+                  },
+                  child: Container(
+                    height: 25,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.blue
+                    ),
+                    child: Center(
+                      child: Text("Add to Cart",style: GoogleFonts.rubik(
+                      fontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),),
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      // color: Colors.brown.shade300,
+                      height: 20,
+                      width: 60,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: 4,
+                        itemBuilder: (context, i) {
+                          return Container(
+                            height: 11,
+                            width: 11.8,
+                            child: Image.asset(
+                              'assets/star.png',
+                              fit: BoxFit.contain,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ]))
         ],
       ),
     );
